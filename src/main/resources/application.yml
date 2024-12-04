@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: NovelServiceApplication
+#  security:
+#    user:
+#      name: test
+#      password: test
+
+#server:
+#  port: 80
