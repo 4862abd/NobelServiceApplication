@@ -45,6 +45,13 @@ public class AuthController {
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         Member loginMember = memberService.memberOf(loginRequest.getUsername(), loginRequest.getPassword());
 
+        // 원래는 username 을 이용해서 principal 로 이용하는 것이 보통이다.
+        // 하지만 Member 의 id 로 Long 값을 이용하며
+        // 기본 UserDetailsManager 인 InMemoryUserDetailsManager 를 이용하지 않고
+        // UserDetailsService 를 상속한 Class 를 구현하여 loadUserByUsername 를 오버라이딩 했다.
+        // 왜 그랬을까?
+        // 키 값을 이용하려고 한다고 하기에는 이후 로직에서도 조회된 Member 변수를 사용하고 있다.
+        // 업무적으로 한 것 뿐일까?
         Authentication loginUserAuthentication = newAuthentication(loginMember.getId(), loginRequest.getPassword());
 
         LoginResponse loginMemberToken = tokenService.newToken(loginUserAuthentication, loginMember);
@@ -52,6 +59,9 @@ public class AuthController {
         HttpHeaders httpHeaders = responseHeadersWithTokenValuesOf(
                 ACCESS_TOKEN_PREFIX + loginMemberToken.getAccessToken(),
                 REFRESH_TOKEN_PREFIX + loginMemberToken.getRefreshToken() + REFRESH_TOKEN_SUFFIX);
+//        내일 할 일
+//        로그인 성공, 실패 - 추후 구현
+//        memberService.loginSuccess(loginMember.getId());
 
         return new ResponseEntity<>(loginMemberToken, httpHeaders, HttpStatus.OK);
     }
@@ -80,6 +90,14 @@ public class AuthController {
     }
 
     private Authentication newAuthentication(UsernamePasswordAuthenticationToken newToken) {
+        // 기본 로직 (로그인 시도한 유저의 정보가 일치하여 조회된 상태, 재 확인):
+        //
+        // ProviderManager.authenticate(Authentication authentication) ->
+        // AbstractUserDetailsAuthenticationProvider.authenticate(Authentication authentication) ->
+        // DaoAuthenticationProvider.retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) ->
+        // InMemoryUserDetailsManager.loadUserByUsername(String username) -> 그 양반은 이 메서드가 재정의한 UserDetailsService 의 loadUserByUsername 를 재정의한 것임.
+        // HashMap.get(Object key) 까지만 팠다.
+        // 즉, 이 로직은 이미 내가 조회하여 메모리에 들어가 있어야 동작? 하는 것으로 보인다.
         return authenticationManagerBuilder.getObject().authenticate(newToken);
     }
 

@@ -6,4 +6,8 @@ public class MemberException extends NovelServiceApplicationException {
     public MemberException(String message) {
         super(message);
     }
+
+    public MemberException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
