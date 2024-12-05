@@ -9,4 +9,7 @@
 4. 로그아웃 시 토큰 처리 작업
 5. LoginHistory 작업
 6. application.yml 중 datasource 등 중요 정보 암호화
-7. 다 진행하면 Redis 넣기
+7. 다 진행하면 Redis 구현
+8. 그것도 되면 간만에 인스턴스랑 rds 올려서 실제 운영
+9. 그것도 테스트되면 docker, kubernetes 공부
+10. 그 다음 기타 CI/CD
