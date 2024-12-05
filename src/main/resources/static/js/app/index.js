@@ -34,9 +34,10 @@ var main = {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
-        }).done(function() {
-            alert('로그인 성공!');
-            window.location.href = '/';
+        }).done(function(result) {
+            console.log('로그인 성공!');
+            console.log(result, 'result');
+            // window.location.href = '/';
         }).fail(function(error) {
             alert(JSON.stringify(error));
             console.log(error, 'error');
