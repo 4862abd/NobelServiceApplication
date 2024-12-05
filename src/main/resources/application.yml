@@ -1,10 +1,28 @@
 spring:
   application:
     name: NovelServiceApplication
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
 #  security:
 #    user:
 #      name: test
 #      password: test
+  hibernate:
+    ddl-auto: none
+  jpa:
+    show-sql: true
+
+
+apiPrefix: /api
+
+#KOREAN
+server:
+  servlet:
+    encoding:
+      force-response: true
 
 #server:
 #  port: 80
