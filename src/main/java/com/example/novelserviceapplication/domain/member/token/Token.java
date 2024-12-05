@@ -13,7 +13,7 @@ import java.util.Date;
 public class Token {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Date expiration;

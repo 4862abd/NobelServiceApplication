@@ -1,16 +1,16 @@
 package com.example.novelserviceapplication.domain.member;
 
+import com.example.novelserviceapplication.domain.member.loginHistory.LockYn;
+import com.example.novelserviceapplication.domain.member.loginHistory.LoginHistory;
 import jakarta.persistence.*;
 import lombok.Getter;
-
-import java.util.Set;
 
 @Getter
 @Entity
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
@@ -25,4 +25,20 @@ public class Member {
             joinColumns = {@JoinColumn(name = "member_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
     private Authority authority;
+
+    @OneToOne
+    @JoinColumn(name = "id", referencedColumnName = "member_id")
+    private LoginHistory loginHistory;
+
+    public void firstLogin() {
+        this.loginHistory = new LoginHistory(id);
+    }
+
+    public boolean isFirstLogin() {
+        return (this.loginHistory == null);
+    }
+
+    public boolean isLocked() {
+        return loginHistory.isLockY();
+    }
 }
