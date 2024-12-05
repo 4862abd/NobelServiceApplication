@@ -1,0 +1,12 @@
+1. 우선적으로 SpringSecurity 를 이용한 JWT 구현까지는 성공
+2. refreshToken 을 DB 에 저장하는 형식이며 Front 의 구현이 조금은 필요하다.
+    2-1. 만료로 로그아웃일 경우 육안으로 확인되는 정도 작업
+    2-2. accessToken 은 로컬 세션 등에 저장, refreshToken 은 쿠키나 세션에 저장
+        ㄴ MIM 에서는 vue 의 상태관리로 accessToken 을 관리하며 JWTEntryPoint 로 인가를 진행했다.
+        ㄴ 그 당시 vue router 의 beforeEach 로 refreshToken 의 인가 작업을 진행했는데,
+            지금 생각해보니 entryPoint 에 refreshToken 작업을 추가하면 되지 않았을까? 싶다.
+3. refreshToken 을 이용한 갱신작업
+4. 로그아웃 시 토큰 처리 작업
+5. LoginHistory 작업
+6. application.yml 중 datasource 등 중요 정보 암호화
+7. 다 진행하면 Redis 넣기
