@@ -2,10 +2,11 @@ spring:
   application:
     name: NovelServiceApplication
   datasource:
-    url: jdbc:h2:tcp://localhost/~/test
+#    url: jdbc:h2:tcp://localhost/~/test
+    url: jdbc:h2:tcp://localhost/~/novel1
     driver-class-name: org.h2.Driver
     username: sa
-    password:
+    password: sa
 #  security:
 #    user:
 #      name: test
