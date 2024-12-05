@@ -1,10 +1,9 @@
 package com.example.novelserviceapplication.domain.member;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
+
+import java.util.Set;
 
 @Getter
 @Entity
@@ -19,4 +18,11 @@ public class Member {
     private String password;
     private String initDate;
     private String nickname;
+
+    @OneToOne
+    @JoinTable(
+            name = "member_authority",
+            joinColumns = {@JoinColumn(name = "member_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
+    private Authority authority;
 }

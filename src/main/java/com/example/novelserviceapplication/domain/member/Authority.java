@@ -1,12 +1,19 @@
 package com.example.novelserviceapplication.domain.member;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class Authority {
 
-//    @Id
+    @Id
+    @Column(name = "authority_name", length = 50)
+    @Enumerated(value = EnumType.STRING)
+    private Role authorityName;
 
 }
