@@ -14,7 +14,6 @@ DROP TABLE IF EXISTS `AUTHORITY`;
 
 CREATE TABLE `AUTHORITY`
 (
-    `ID`             BIGINT      NOT NULL COMMENT 'ID',
     `AUTHORITY_NAME` VARCHAR(50) NOT NULL COMMENT '권한명'
 );
 
@@ -84,7 +83,7 @@ ALTER TABLE `MEMBER`
 
 ALTER TABLE `AUTHORITY`
     ADD CONSTRAINT `PK_AUTHORITY` PRIMARY KEY (
-                                               `ID`
+                                               `AUTHORITY_NAME`
         );
 
 ALTER TABLE `LOGIN_HISTORY`
