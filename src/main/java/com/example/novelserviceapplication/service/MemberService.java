@@ -7,6 +7,7 @@ import com.example.novelserviceapplication.domain.member.loginHistory.LoginHisto
 import com.example.novelserviceapplication.exception.member.MemberLockedException;
 import com.example.novelserviceapplication.exception.member.MemberNotFoundException;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -15,26 +16,19 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final LoginHistoryRepository loginHistoryRepository;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public MemberService(MemberRepository memberRepository, LoginHistoryRepository loginHistoryRepository) {
+    public MemberService(MemberRepository memberRepository, LoginHistoryRepository loginHistoryRepository, PasswordEncoder passwordEncoder) {
         this.memberRepository = memberRepository;
         this.loginHistoryRepository = loginHistoryRepository;
+        this.passwordEncoder = passwordEncoder;
     }
-
-
-//    public MemberService(MemberRepository memberRepository, LoginHistoryRepository loginHistoryRepository, PasswordEncoder passwordEncoder) {
-//        this.memberRepository = memberRepository;
-//        this.loginHistoryRepository = loginHistoryRepository;
-////        this.passwordEncoder = passwordEncoder;
-//    }
 
     public Member memberOf(String username, String password) {
         Member loginMember = memberRepository.findByUsername(username)
                 .orElseThrow(() -> new MemberNotFoundException("이름에 해당하는 멤버정보가 없습니다: " + username));
 
-//        if (!passwordEncoder.matches(password, loginMember.getPassword())) {
-        if (!password.equals(loginMember.getPassword())) {
+        if (!passwordEncoder.matches(password, loginMember.getPassword())) {
 //            내일 할 일
 //            로그인 성공, 실패 - 추후 구현
 //            if (loginMember.isLocked()) {
