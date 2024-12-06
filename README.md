@@ -36,11 +36,11 @@
 5. 웹소설 단건 조회
     - GET /api/novel/{novelId}
 6. 웹소설 상세 조회
-    - GET /api/novel/content/{novelId}
+    - GET /api/novel/{novelId}/content
 7. 웹소설 등록
-    - POST /api/novel/
+    - POST /api/novel
 8. 웹소설 수정
-    - PATCH /api/novel
+    - PATCH /api/novel/{novelId}
 9. 웹소설 삭제
     - DELETE /api/novel/{novelId}
 10. 웹소설 구매
