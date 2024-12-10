@@ -1,4 +1,4 @@
-package com.example.novelserviceapplication.config;
+package com.example.novelserviceapplication.config.customTest;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

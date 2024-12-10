@@ -7,6 +7,7 @@ import com.example.novelserviceapplication.service.MemberService;
 import com.example.novelserviceapplication.service.TokenService;
 import com.example.novelserviceapplication.web.dto.LoginRequest;
 import com.example.novelserviceapplication.web.dto.LoginResponse;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

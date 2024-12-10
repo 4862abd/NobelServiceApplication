@@ -6,10 +6,6 @@ var main = {
             _this.login();
         });
 
-        $('#btn-search').on('click', function() {
-            _this.search();
-        });
-
         $('#btn-save').on('click', function () {
             _this.save();
         });
@@ -41,21 +37,6 @@ var main = {
         }).fail(function(error) {
             alert(JSON.stringify(error));
             console.log(error, 'error');
-        });
-    },
-    search: function() {
-        const data = {};
-        $.ajax({
-            type: 'GET',
-            url: '/api/novel',
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            // data: JSON.stringify(data)
-        }).done(function(result) {
-            console.log(result, 'result');
-            // window.location.href = '/';
-        }).fail(function(error) {
-            console.log(JSON.stringify(error), 'error');
         });
     },
     save: function () {
@@ -113,7 +94,7 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
-    }
+    },
 };
 
 main.init();

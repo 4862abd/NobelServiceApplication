@@ -15,8 +15,6 @@
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
             {{/userName}}
             {{^userName}}
-            <!--                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>-->
-            <!--                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>-->
 
             <form onsubmit="" method="post">
                 <div class="form-group">
@@ -48,15 +46,16 @@
         </tr>
         </thead>
         <tbody id="tbody">
-        {{#posts}}
+        {{#novelTitles}}
             <tr>
                 <td>{{id}}</td>
                 <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                <td>{{author}}</td>
-<!--                <td>{{^modifiedDate}}N{{/modifiedDate}}</td>-->
-                <td>{{modifiedDate}}</td>
+                <td>{{authorNickname}}</td>
+                <td></td>
+                <td></td>
+                <td>{{^modifiedDate}}N{{/modifiedDate}}</td>
             </tr>
-        {{/posts}}
+        {{/novelTitles}}
         </tbody>
     </table>
 </div>

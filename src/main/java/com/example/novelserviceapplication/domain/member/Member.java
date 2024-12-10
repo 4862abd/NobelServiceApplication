@@ -3,9 +3,15 @@ package com.example.novelserviceapplication.domain.member;
 import com.example.novelserviceapplication.domain.member.loginHistory.LockYn;
 import com.example.novelserviceapplication.domain.member.loginHistory.LoginHistory;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Member {
 
@@ -16,7 +22,7 @@ public class Member {
     private String username;
     private String email;
     private String password;
-    private String initDate;
+    private Date initDate;
     private String nickname;
 
     @OneToOne
